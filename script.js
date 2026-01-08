@@ -1,9 +1,8 @@
-let humanScore = 0;
-let computerScore = 0;
 playGame();
 
 function playGame(){
-    
+    let humanScore = 0;
+    let computerScore = 0;
 
     for(let i = 0; i < 5; i++){
         playRound(getHumanChoice(), getComputerChoice());
@@ -16,33 +15,33 @@ function playGame(){
     } else {
         console.log(`Better luck next time! Score: ${humanScore} to ${computerScore}`);
     }
-}
 
-function playRound(humanChoice, computerChoice){
-let result = "";
+    function playRound(humanChoice, computerChoice){
+    let result = "";
 
-    if(humanChoice === computerChoice){
-        result = "draw";
-    } else if(humanChoice === "rock"  && computerChoice === "scissors"){
-        result = "win";
-        humanScore += 1;
-    } else if(humanChoice === "paper"  && computerChoice === "rock"){
-        result = "win";
-        humanScore += 1;
-    } else if(humanChoice === "scissors"  && computerChoice === "paper"){
-        result = "win";
-        humanScore += 1;
-    } else {
-        result = "lose";
-        computerScore += 1;
-    }
+        if(humanChoice === computerChoice){
+            result = "draw";
+        } else if(humanChoice === "rock"  && computerChoice === "scissors"){
+            result = "win";
+            humanScore += 1;
+        } else if(humanChoice === "paper"  && computerChoice === "rock"){
+            result = "win";
+            humanScore += 1;
+        } else if(humanChoice === "scissors"  && computerChoice === "paper"){
+            result = "win";
+            humanScore += 1;
+        } else {
+            result = "lose";
+            computerScore += 1;
+        }
 
-    if (result === "draw"){
-        console.log(`Draw! Both threw ${humanChoice} and ${computerChoice}`);
-    } else if (result === "win"){
-        console.log(`You ${result}! ${humanChoice} beats ${computerChoice}`);
-    } else {
-        console.log(`You ${result}! ${computerChoice} beats ${humanChoice}`);
+        if (result === "draw"){
+            console.log(`Draw! Both threw ${humanChoice} and ${computerChoice}`);
+        } else if (result === "win"){
+            console.log(`You ${result}! ${humanChoice} beats ${computerChoice}`);
+        } else {
+            console.log(`You ${result}! ${computerChoice} beats ${humanChoice}`);
+        }
     }
 }
 
