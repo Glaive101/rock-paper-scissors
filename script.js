@@ -1,4 +1,4 @@
-let rounds = 0;
+//let rounds = 0;
 
 let humanScore = 0;
 let computerScore = 0;
@@ -20,26 +20,19 @@ bodyElement.appendChild(resultDiv);
 /*                     Button events                         */
 /*************************************************************/
 
-const rockButton = document.querySelector("#rock");
-rockButton.addEventListener("click", () => {
-    buttonEventHandler("rock");
-});
-
-const paperButton = document.querySelector("#paper");
-paperButton.addEventListener("click", () => {
-    buttonEventHandler("paper");
-});
-
-const scissorsButton = document.querySelector("#scissors");
-scissorsButton.addEventListener("click", () => {
-    buttonEventHandler("scissors");
+const buttons = ['rock', 'paper', 'scissors'];
+buttons.forEach((button) => {
+    const element = document.querySelector(`#${button}`);
+    element.addEventListener("click", () => buttonEventHandler(button));
 });
 
 function buttonEventHandler(input){
     result = playRound(input, computerSelection());
     displayResults(result);
+    checkWin();
+}
 
-    //Rounds tracker and handler
+function checkWin(){
     if(humanScore === 5 || computerScore === 5){
         if(humanScore === computerScore){
             //console.log(`The match was a DRAW!  Score: ${humanScore} to ${computerScore}`);
@@ -52,13 +45,12 @@ function buttonEventHandler(input){
             alert(`Better luck next time! Score: ${humanScore} to ${computerScore}`);
         }
 
-    //  reset tracking variables
-        humanScore = 0;
-        computerScore = 0;
+//  reset tracking variables
+    humanScore = 0;
+    computerScore = 0;
 
-        scoreElement.textContent = `Current Score: H:${humanScore} to C:${computerScore}`;
+    scoreElement.textContent = `Current Score: H:${humanScore} to C:${computerScore}`;
     }
-    
 }
 
 function playRound(humanChoice, computerChoice){
@@ -97,15 +89,15 @@ function displayResults(result){
     scoreElement.textContent = `Current Score: H:${humanScore} to C:${computerScore}`;  // update scoring element
 
     if (result === "draw"){
-            //console.log(`Draw! Both threw ${humanChoice} and ${computerChoice}`);
-            resultDiv.textContent = `Draw! Both threw ${humanChoice} and ${computerChoice}`;
-        } else if (result === "win"){
-            //console.log(`You ${result}! ${humanChoice} beats ${computerChoice}`);
-            resultDiv.textContent = `You ${result}! ${humanChoice} beats ${computerChoice}`;
-        } else {
-            //console.log(`You ${result}! ${computerChoice} beats ${humanChoice}`);
-            resultDiv.textContent = `You ${result}! ${computerChoice} beats ${humanChoice}`;
-        }
+        //console.log(`Draw! Both threw ${humanChoice} and ${computerChoice}`);
+        resultDiv.textContent = `Draw! Both threw ${humanChoice} and ${computerChoice}`;
+    } else if (result === "win"){
+        //console.log(`You ${result}! ${humanChoice} beats ${computerChoice}`);
+        resultDiv.textContent = `You ${result}! ${humanChoice} beats ${computerChoice}`;
+    } else {
+        //console.log(`You ${result}! ${computerChoice} beats ${humanChoice}`);
+        resultDiv.textContent = `You ${result}! ${computerChoice} beats ${humanChoice}`;
+    }
 }
 
 /*************************************************************/
